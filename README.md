@@ -11,20 +11,20 @@ This repository contains Ansible playbooks for deploying and configuring the Vee
 
 ## Directory Structure
 
-.
-├── inventory/
-│   └── hosts                  # Inventory file with AIX servers
-├── files/
-│   ├── VeeamPluginforDB2-12.2.0.334-1.x86_64.rpm
-│   └── config.xml            # Your DB2 configuration file
-├── group_vars/
-│   └── aix_servers.yml       # Variables for AIX servers
-├── veeam_db2_deploy.yml      # Main playbook
-└── readme.md
+    .
+    ├── inventory/
+    │   └── hosts                  # Inventory file with AIX servers
+    ├── files/
+    │   ├── VeeamPluginforDB2-12.2.0.334-1.x86_64.rpm
+    │   └── config.xml            # Your DB2 configuration file
+    ├── group_vars/
+    │   └── aix_servers.yml       # Variables for AIX servers
+    ├── veeam_db2_deploy.yml      # Main playbook
+    └── readme.md
 
 ## Setup Instructions
 
-1. Create inventory file at `inventory/hosts`:
+### 1. Create inventory file at `inventory/hosts`:
 
 [aix_servers]
 aix-server1 ansible_host=192.168.1.101
@@ -35,11 +35,11 @@ aix-server2 ansible_host=192.168.1.102
 ansible_user=root
 ansible_connection=ssh
 
-2. Place required files:
-   - Copy Veeam Plugin RPM to `files/` directory
-   - Copy your DB2 configuration XML to `files/` directory
+### 2. Place required files:
+- Copy Veeam Plugin RPM to `files/` directory
+- Copy your DB2 configuration XML to `files/` directory
 
-3. Set credentials securely using ansible-vault:
+### 3. Set credentials securely using ansible-vault:
 
 ansible-vault create group_vars/aix_servers.yml
 

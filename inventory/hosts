@@ -1,1 +1,12 @@
+[aix_servers]
+aix-server1 ansible_host=192.168.1.101
+aix-server2 ansible_host=192.168.1.102
+aix-server3 ansible_host=192.168.1.103
+# Add all your AIX servers here
 
+[aix_servers:vars]
+ansible_user=root
+ansible_connection=ssh
+
+
+# Place in the default Ansible location /etc/ansible/hosts or in your project directory as inventory/hosts

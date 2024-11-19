@@ -1,0 +1,25 @@
+---
+- name: Deploy and Configure Veeam Plugin for DB2
+  hosts: aix_servers
+  become: yes
+  tasks:
+    - name: Install Veeam Plugin RPM
+      yum:
+        name: "{{ playbook_dir }}/files/VeeamPluginforDB2-12.2.0.334-1.x86_64.rpm"
+        state: present
+
+    - name: Ensure plugin directory exists
+      file:
+        path: /opt/veeam/VeeamPluginforDB2
+        state: directory
+        mode: '0755'
+
+    - name: Copy XML configuration file
+      copy:
+        src: "{{ playbook_dir }}/files/config.xml"
+        dest: /opt/veeam/VeeamPluginforDB2/
+        mode: '0644'
+
+    - name: Set Veeam DB2 credentials
+      command: DB2ConfigTool --set-credentials "serv02\Administrator" "{{ veeam_password }}"
+      no_log: true  # Hide sensitive password information from logs
